@@ -8,7 +8,7 @@ class BillCounter {
     fun calculateFairlySplit(bill: IntArray, k: Int, b: Int): String {
         throw NotImplementedError("Not implemented")
         val billNew = (bill.sum() - bill[k]) / 2
-        return if (billNew == b) {
+        return if (billNew - b == 0) {
             "Bon Appetit"
         } else {
             (b - billNew).toString()
