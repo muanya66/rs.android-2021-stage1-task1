@@ -6,22 +6,23 @@ class HappyArray {
     fun convertToHappy(sadArray: IntArray): IntArray {
         throw NotImplementedError("Not implemented")
 
-        val sadArray2 = sadArray.toMutableList()
-        val i = 0
-        val arrOfIndex = 1..(sadArray2.lastIndex-1)
+        val sadArray = sadArray.toMutableList()
+        val i = 1
+        //val arrOfIndex = 1..(sadArray.lastIndex-1)
 
 
-        for (i in arrOfIndex) {
-            if (sadArray2[i - 1] + sadArray2[i + 1] < sadArray2[i]) {
-                sadArray2.removeAt(i)
+        while (i < sadArray.size - 1) {
+            if (sadArray[i - 1] + sadArray[i + 1] < sadArray[i]) {
+                sadArray.removeAt(i)
                 if (i != 1) {
                     i--
-                } else{
+                }
+                else{
                     i++
             }
         }
         }
 
-        return sadArray2.toIntArray()
+        return sadArray.toIntArray()
     }
 }

@@ -14,6 +14,10 @@ class Task1StringParserTest {
         assertArrayEquals(result, stringParser.getResult(inputStr))
     }
 
+    private fun assertArrayEquals(result: Array<String>, result1: MutableList<String>) {
+
+    }
+
     @Test
     fun testStringParser2() {
         val inputStr = "It's so special<link>. " +
