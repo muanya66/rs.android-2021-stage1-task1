@@ -1,32 +1,37 @@
 package subtask3
 
-
 class StringParser {
 
-    // TODO: Complete the following function
-    fun getResult(inputString: String): MutableList<String> {
-        //throw NotImplementedError("Not implemented")
-        var i = 0
-        val result = mutableListOf<String>()
 
-        while (i != inputString.length) {
-            if (inputString[i] == '('  || inputString[i] == '['  || inputString[i] == '<') {
-                var j = 0
-                val str = inputString.substring(i + 1, inputString.length)
+    fun getResult(inputString: String): Array<String> {
+        val myStrArray = mutableListOf<String>()
+        val myStrArrayInd = mutableMapOf<Int, Int>()
 
+        val brack1 = mutableListOf<Int>() //переменная "круглые скобки"
+        val brack2 = mutableListOf<Int>() //переменная "квадратные скобки"
+        val brack3 = mutableListOf<Int>() //переменная "треугольные скобки"
 
-                when (inputString[i]) {
-                    '(' -> while (str[j] != ')') j++
-                    '[' -> while (str[j] != ']') j++
-                    '<' -> while (str[j] != '>') j++
+        for (index in inputString.indices) { //обработка массива круглых скобок
+            when (inputString[index]) {
+                '(' -> brack1.add(index)
+                ')' -> if (brack1.isNotEmpty()) {
+                    myStrArrayInd[brack1.last() + 1] = index
+                    brack1.removeAt(brack1.lastIndex)
                 }
-                result.add(str.substring(0, j))
-
-                i += j
+                '[' -> brack2.add(index)  //обработка массива квадратных скобок
+                ']' -> if (brack2.isNotEmpty()) {
+                    myStrArrayInd[brack2.last() + 1] = index
+                    brack2.removeAt(brack2.lastIndex)
+                }
+                '<' -> brack3.add(index)  //обработка массива треугольных скобок
+                '>' -> if (brack3.isNotEmpty()) {
+                    myStrArrayInd[brack3.last() + 1] = index
+                    brack3.removeAt(brack3.lastIndex)
+                }
             }
-            i++
-        }
-        return result
-        }
-    }
 
+        }
+        for ((firstIndex, lastIndex) in myStrArrayInd.toSortedMap()) { //добавление substr в массив
+            myStrArray.add(inputString.substring(firstIndex, lastIndex))
+        }
+        return myStrArray.toTypedArray() } }
