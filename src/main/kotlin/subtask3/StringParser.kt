@@ -5,8 +5,8 @@ class StringParser {
 
     // TODO: Complete the following function
     fun getResult(inputString: String): MutableList<String> {
-        throw NotImplementedError("Not implemented")
-        val i = 0
+        //throw NotImplementedError("Not implemented")
+        var i = 0
         val result = mutableListOf<String>()
 
         while (i != inputString.length) {
